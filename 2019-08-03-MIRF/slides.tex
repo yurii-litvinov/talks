@@ -49,42 +49,19 @@
 \newcounter{NoTableEntry}
 \renewcommand*{\theNoTableEntry}{NTE-\the\value{NoTableEntry}}
 
-\newcommand*{\strike}[2]{%
-	\multicolumn{1}{#1}{%
-		\stepcounter{NoTableEntry}%
-		\vadjust pre{\zsavepos{\theNoTableEntry t}}% top
-		\vadjust{\zsavepos{\theNoTableEntry b}}% bottom
-		\zsavepos{\theNoTableEntry l}% left
-		\hspace{0pt plus 1filll}%
-		#2% content
-		\hspace{0pt plus 1filll}%
-		\zsavepos{\theNoTableEntry r}% right
-		\tikz[overlay]{%
-			\draw
-			let
-			\n{llx}={\zposx{\theNoTableEntry l}sp-\zposx{\theNoTableEntry r}sp-\tabcolsep},
-			\n{urx}={\tabcolsep},
-			\n{lly}={\zposy{\theNoTableEntry b}sp-\zposy{\theNoTableEntry r}sp},
-			\n{ury}={\zposy{\theNoTableEntry t}sp-\zposy{\theNoTableEntry r}sp}
-			in
-			(\n{llx}, \n{lly}) -- (\n{urx}, \n{ury})
-			;
-		}% 
-	}%
-}
-
 \title[MIRF]{Medical Images Research Framework} 
 \institute[SPbSU]{Saint-Petersburg State University \\
 	Software Engineering chair} 
 
-\author[Yurii Litvinov]{Sabrina Musatyan \\
-	\and
-	Alexander Lomakin \\
-	\and
-	Angelina Chizhova \\
-	\and
-	{\bfseries Yurii Litvinov}
-	}
+\author[Yurii Litvinov]{
+Sabrina Musatyan \\
+\and
+Alexander Lomakin \\
+\and
+Angelina Chizhova \\
+\and
+{\bfseries Yurii Litvinov}
+}
 
 \date{03.08.2019} 
 
@@ -100,11 +77,16 @@
 
 
 \begin{frame}
-     \frametitle{Motivation}
-        \begin{figure}[b]
-             \centering
-             \includegraphics[width=12cm]{pictures/brainseg.png}
-         \end{figure}
+	\frametitle{Motivation}
+	\begin{figure}[b]
+		\centering
+		\includegraphics[width=0.6\textwidth]{pictures/brainseg.png}
+	\end{figure}
+	Project goal:
+	\begin{itemize}
+		\item to create an extensible platform for development of medical instruments
+		\item to integrate this instruments  into a convenient environment in which many other essential instruments for physicians may be seamlessly used
+	\end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -141,24 +123,24 @@
  \end{frame}
  
 \begin{frame}
-     \frametitle{MIRF architecture}
-        \begin{figure}[b]
-             \centering
-             \includegraphics[width=12cm]{pictures/pipe.png}
-         \end{figure}
+	\frametitle{MIRF Core architecture}
+	\begin{figure}[b]
+		\centering
+		\includegraphics[width=12cm]{pictures/pipe.png}
+	\end{figure}
 \end{frame}
  
 \begin{frame}
-    \frametitle{Supported image formats}
-        \begin{itemize}
-            \item Common intermediate representation
-            \item Supported formats:
-                    \begin{itemize}
-                         \item DICOM
-                         \item NIfTI
-                         \item MHD (from ITK)
-                     \end{itemize}
-         \end{itemize}
+	\frametitle{Supported image formats}
+	\begin{itemize}
+		\item Common intermediate representation
+		\item Supported formats:
+			\begin{itemize}
+				\item DICOM
+				\item NIfTI
+				\item MHD (from ITK)
+			\end{itemize}
+	\end{itemize}
  \end{frame}
 
   \begin{frame}
@@ -209,6 +191,13 @@
          \end{figure}
  \end{frame}
 
+  \begin{frame}
+     \frametitle{Example: multiple sclerosis}
+        \begin{figure}
+             \includegraphics[width=0.8\textwidth]{pictures/mirfMsPipeline.png}
+         \end{figure}
+ \end{frame}
+
    \begin{frame}
      \frametitle{Android integration}
         \begin{itemize}
@@ -229,5 +218,14 @@
              \item Separate MIRF build for Android
          \end{itemize}
  \end{frame}
- 
+
+\begin{frame}
+	\frametitle{Contacts}
+	\begin{itemize}
+		\item \url{http://mathandmedlab.com/mirf.html}
+		\item \url{https://github.com/MathAndMedLab/Medical-images-research-framework}
+		\item contact@mathandmedlab.com
+	\end{itemize}
+\end{frame}
+
 \end{document}
