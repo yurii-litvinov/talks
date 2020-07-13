@@ -1,0 +1,195 @@
+\documentclass[xetex,mathserif,serif]{beamer}
+\usepackage{polyglossia}
+\usepackage{minted}
+\usepackage{tabu}
+
+\usepackage{textpos}
+\setlength{\TPHorizModule}{1cm}
+\setlength{\TPVertModule}{1cm}
+
+\useoutertheme{infolines}
+
+\usepackage{fontspec}
+\setmainfont{FreeSans}
+\newfontfamily{\russianfonttt}{FreeSans}
+
+\setbeamertemplate{blocks}[rounded][shadow=false]
+\setbeamercolor*{block title example}{fg=green!50!black,bg=green!20}
+\setbeamercolor*{block body example}{fg=black,bg=green!10}
+
+\setbeamercolor*{block title alerted}{fg=red!50!black,bg=red!20}
+\setbeamercolor*{block body alerted}{fg=black,bg=red!10}
+
+\definecolor{cadmiumgreen}{rgb}{0.0, 0.42, 0.24}
+
+\tabulinesep=0.7mm
+
+\newcommand{\attribution}[1] {
+\vspace{-5mm}\begin{flushright}\begin{scriptsize}\textcolor{gray}{\textcopyright\, #1}\end{scriptsize}\end{flushright}
+}
+
+\title{``Программирование''/``САКОД''}
+\author[Юрий Литвинов]{Ю.В. Литвинов \newline 
+    \textcolor{gray}{\small\texttt{y.litvinov@spbu.ru}}
+}
+
+\date{}
+
+\begin{document}
+
+    \begin{frame}
+        \frametitle{Цель, общая структура}
+        Цель:
+        \begin{itemize}
+            \item После первого курса --- участвовать в летних школах, быстро стартовать проект в начале второго курса
+            \item После второго курса --- быть полезными на стажировках, иметь кругозор, быть в целом готовыми на Junior-разработчика
+        \end{itemize}
+        Общая структура:
+        \begin{itemize}
+            \item 1 семестр --- алгоритмы и структуры данных на C
+            \item 2 семестр --- ООП на C\#
+            \item 3 семестр --- ``продвинутое'' программирование на C\#
+            \item САКОД --- функциональное программирование на F\#
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Особенности реализации}
+        \begin{itemize}
+            \item Ориентированность на промышленную разработку
+            \item Начинаем с нуля, обычно слабые студенты
+            \item В основном лекционные пары, без привязки к курсу ``Информатика''
+            \item Много домашки, проверка и общение в основном удалённо
+            \item Отдельные часы на 2-м курсе на защиты практик
+            \item Своя LMS, \url{http://hwproj.me/}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{1 семестр}
+        \begin{scriptsize}
+            \begin{itemize}
+                \item Раздел 1, базовая алгоритмика
+                \begin{itemize}
+                    \item \scriptsize{Введение в C/C++}
+                    \item Сложность алгоритмов, стайлгайд, процесс компиляции, тестирование и отладка
+                    \item Сортировки, git
+                    \item Внутреннее представление данных. Файлы, структуры, указатели, .h/.c
+                    \item О разработке программных продуктов. Контрольная
+                \end{itemize}
+                \item Раздел 2, ``динамические'' структуры данных
+                \begin{scriptsize}
+                    \begin{itemize}
+                        \item \scriptsize{Стеки, очереди, списки}
+                        \item Понятие абстрактного типа данных, ещё списки
+                        \item Деревья вообще и деревья поиска
+                        \item Самобалансирующиеся деревья: АВЛ, красно-чёрные, splay
+                        \item Хеш-таблицы
+                        \item Графы
+                        \item Обзор парадигм программирования. Контрольная.
+                        \item Доклады. Ещё про парадигмы программирования.
+                        \item Автоматы, лексический анализ
+                        \item Зачёт
+                    \end{itemize}
+                \end{scriptsize}
+            \end{itemize}
+        \end{scriptsize}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{2 семестр}
+        \begin{scriptsize}
+            \begin{itemize}
+                \item Введение в C\#
+                \item ООП вообще и в C\#
+                \item Модульные тесты
+                \item Исключения и обработка ошибок
+                \item CI, инструменты разработки, немного про лицензии
+                \item Событийно-ориентированное программирование
+                \item Пользовательские интерфейсы (WinForms)
+                \item Контейнеры и генерики
+                \item Контрольная
+                \item Визуальное моделирование
+                \item SOLID и общие рекомендации про хороший ООП-код
+                \item Доклады
+                \item Зачёт
+            \end{itemize}
+        \end{scriptsize}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{3 семестр}
+        \begin{scriptsize}
+            \begin{itemize}
+                \item Многопоточное программирование
+                \begin{itemize}
+                    \item \scriptsize{Многопоточное программирование ``на низком уровне'': поддержка со стороны ОС, планировщик, Thread, гонки --- \textbf{Lazy}}
+                    \item Примитивы синхронизации, кратко про модель памяти
+                    \item Практика, ``Обедающие философы'' --- \textbf{MyThreadPool}
+                    \item Высокоуровневая многопточность: пул потоков, async/await
+                \end{itemize}
+                \item Сетевое программирование
+                \begin{itemize}
+                    \item \scriptsize{Работа с сетью, низкий уровень (модель OSI, сокеты, консольные утилиты, клиент-сервер на .NET) --- \textbf{SimpleFTP}}
+                    \item Работа с сетью, высокий уровень (HTTP вообще и в .NET, REST-сервисы, безопасность)
+                    \item Практика, клиент для вконтакта
+                \end{itemize}
+                \item Рефлексия --- \textbf{MyNUnit}
+                \item Контрольная
+                \item Базы данных (вообще реляционные СУБД, SQL, кратко EF Core)
+                \item GUI на WPF
+                \begin{itemize}
+                    \item \scriptsize{Обзор библиотеки}
+                    \item Ещё немного обзора, практика: GUI для клиента вконтакта --- \textbf{GUI для FTP}
+                \end{itemize}
+                \item Веб-программирование --- \textbf{MyNUnitWeb}
+                \item Защита практик
+            \end{itemize}
+        \end{scriptsize}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{4 семестр}
+        \begin{scriptsize}
+            \begin{itemize}
+                \item Функциолнальное программирование, введение в F\#
+                \item Ещё особенности F\#
+                \item Нетипизированное $\lambda$-исчисление
+                \item Генерики в F\#
+                \item Объектно-ориентированное программирование в F\#
+                \item Вычислительные выражения в F\#
+                \item Многопоточное программирование в F\#
+                \item Синтаксический анализ на F\#, часть 1 (синтаксический анализ вообще)
+                \item Синтаксический анализ на F\#, часть 2 (FParsec vs FsLex/FsYacc)
+                \item Доклады
+                \item Сборка мусора в .NET
+                \item Защиты практик
+            \end{itemize}
+        \end{scriptsize}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Материалы}
+        \begin{scriptsize}
+            \begin{itemize}
+                \item Материалы курса прошлого года и задачи: \url{http://hwproj.me/courses/34}
+                \item Исходники презентаций:
+                \begin{itemize}
+                    \item \scriptsize{\url{https://github.com/yurii-litvinov/courses/tree/master/programming-1st-semester}}
+                    \item \url{https://github.com/yurii-litvinov/courses/tree/master/programming-2nd-semester}
+                    \item \url{https://github.com/yurii-litvinov/courses/tree/master/programming-3rd-semester}
+                    \item \url{https://github.com/yurii-litvinov/courses/tree/master/fsharp}
+                \end{itemize}
+                \item Подробные программы и условия контрольных (просите доступ):
+                \begin{itemize}
+                    \item \scriptsize{\url{https://docs.google.com/spreadsheets/d/107S8u65s6ml-2P20N665qg239zjqJP702Xiz3oDwOok}}
+                    \item \url{https://docs.google.com/spreadsheets/d/1FMPQxGzAg7OPkeV7RFkjLbs4CXi8LQZL4gtwMftHeak}
+                    \item \url{https://docs.google.com/spreadsheets/d/1P7qGCpLluHMKS5ZQlnC4Bty73c94i9dYecpuc4Bv5LU}
+                    \item \url{https://docs.google.com/spreadsheets/d/1NYwteG2ehKuhhhpE4BthSgCvB7HDnCnOEDUeyHsA1BA}
+                \end{itemize}
+            \end{itemize}
+        \end{scriptsize}
+    \end{frame}
+
+\end{document}
+
