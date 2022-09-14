@@ -1,0 +1,146 @@
+\documentclass{slides-style}
+
+\slidetitle{Темы от YADRO: TMS и RISC-V}{15.09.2022}
+
+\begin{document}
+
+    \begin{frame}[plain]
+        \titlepage
+    \end{frame}
+
+    \section{TMS}
+
+    \begin{frame}
+        \frametitle{Test Management System}
+        \begin{itemize}
+            \item Веб-приложение для управления тестовыми планами и результатами тестирования
+            \item Аналог TestRail, Test It, TestLink и т.п.
+            \item Нужно YADRO для работы QA-отдела, первый прототип по плану уже в декабре
+            \item В основном на Python + PostgreSQL
+            \item Нам достанется лишь небольшая часть проекта
+            \item Основные фичи: тест-кейсы с настраиваемыми полями, группировка по сьютам и проектам, тэги, приоритеты, параметризация, конфигурации тестового окружения, тест-планы, учёт времени выполнения, учёт результатов с настраиваемыми полями, интеграция с Jira и системами модульного тестирования, репортинг, REST API
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Конкретные задачи}
+        \framesubtitle{Пока что}
+        \begin{itemize}
+            \item Отчёты о результатах тестирования
+            \begin{itemize}
+                \item Скорее всего, отдельный сервис
+                \item HTML-документ со стилем и скриптами для удобного просмотра (речь о тысячах тестов)
+                \item Поддержка автотестов (см. Allure Framework)
+            \end{itemize}
+            \item Система уведомлений
+            \begin{itemize}
+                \item Скорее всего, отдельный сервис, но может оказаться плагином к сайту на Django
+                \item Письма, уведомления внутри системы, MatterMost и, наверное, Slack
+            \end{itemize}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Конкретные задачи (2)}
+        \begin{itemize}
+            \item Свой фронтенд
+            \begin{itemize}
+                \item У YADRO есть свой UI Framework, который они нам не дадут, и будут писать фронтенд на нём
+                \item Open source-версия на чём угодно, взаимодействие через REST API
+                \item Надо будет написать и заглушки сервера
+                \item Скорее всего, командная работа
+            \end{itemize}
+            \item Интеграция с Jira
+            \begin{itemize}
+                \item Больше фронтенд внутри самой системы
+                \item Скорее всего, потребуется устройство на стажировку
+            \end{itemize}
+        \end{itemize}
+    \end{frame}
+
+    \section{RISC-V}
+
+    \begin{frame}
+        \frametitle{RISC-V}
+        \begin{itemize}
+            \item Целое направление --- инструментальная поддержка процесса разработки под RISC-V
+            \item Актуально, поскольку открытая процессорная архитектура
+            \item Много разного плана задач, и по мере погружения в тему будет ещё Больше
+            \begin{itemize}
+                \item Кажется, что вплоть до кандидатской
+            \end{itemize}
+            \item Направления:
+            \begin{itemize}
+                \item Симуляция, Instruction-accurate и Cycle-accurate
+                \item Оптимизация библиотек и инструментов под RISC-V
+                \begin{itemize}
+                    \item Рантаймы языков программирования: Python, Go, Lua
+                \end{itemize}
+                \item Отладка и анализ трасс
+                \item IDE
+            \end{itemize}
+            \item Нужно желание копаться в чужом коде и непонятных штуках
+            \begin{itemize}
+                \item Это интересно, и уникальные знания
+            \end{itemize}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Конкретные задачи}
+        \framesubtitle{Пока что}
+        \begin{itemize}
+            \item Verilator: SCR1
+            \begin{itemize}
+                \item SCR1 --- открытое ядро Syntacore RISC-V
+                \item Verilator --- тул, который по описанию процессора на Verilog генерирует для него симулятор
+                \item Надо запустить SCR1 на Verilator и прогнать на получившемся симуляторе тесты от Syntacore
+                \item Просто? Не думаю
+            \end{itemize}
+            \item Сравнительный обзор симуляторов
+            \begin{itemize}
+                \item Посмотреть на разные симуляторы, способные симулировать RISC-V
+                \item Научиться их запускать
+                \item Составить таблицу поддержки профилей
+                \item Сравнить производительность
+            \end{itemize}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Конкретные задачи (2)}
+        \begin{itemize}
+            \item Оптимизация Verilator
+            \begin{itemize}
+                \item Известно, что некоторый код на Verilog порождает медленные симуляторы
+                \item Например, сложение может быть расписано как страшная конструкция из транзисторов и Verilator не догадается заменить его на ``+''
+                \item Задача --- найти такие случаи и предложить изменения в Verilator
+                \item Много нетривиального кода на C++
+            \end{itemize}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Ещё направления}
+        \begin{itemize}
+            \item IDE
+            \begin{itemize}
+                \item Готовый инструментарий разработки под RISC-V с симулятором, отладкой изнутри IDE и т.п.
+                \item Рекомендации по портированию --- например, подсветка инструкций с плавающей точкой, если их нет в профиле
+            \end{itemize}
+            \item Анализ трасс в Verilator --- печатать состояние процессора
+            \item Cycle-accurate-симуляция в симуляторе SAIL для RISC V
+            \begin{itemize}
+                \item Почитать про это статьи, повторить эксперимент Coyote
+                \item Перенести в SAIL
+                \item Код на OCaml!
+            \end{itemize}
+            \item Оптимизация Linux под RISC-V
+            \item JIT для SAIL
+            \item Реализация расширений в SAIL и SPIKE
+            \item Моделирование DDR
+            \item ...
+        \end{itemize}
+    \end{frame}
+
+\end{document}
