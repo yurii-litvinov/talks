@@ -1,32 +1,11 @@
 \documentclass[xetex,mathserif,serif]{beamer}
 \usepackage{polyglossia}
-\usepackage{minted}
-\usepackage{tabu}
-
-\usepackage{textpos}
-\setlength{\TPHorizModule}{1cm}
-\setlength{\TPVertModule}{1cm}
 
 \useoutertheme{infolines}
 
 \usepackage{fontspec}
 \setmainfont{FreeSans}
 \newfontfamily{\russianfonttt}{FreeSans}
-
-\setbeamertemplate{blocks}[rounded][shadow=false]
-\setbeamercolor*{block title example}{fg=green!50!black,bg=green!20}
-\setbeamercolor*{block body example}{fg=black,bg=green!10}
-
-\setbeamercolor*{block title alerted}{fg=red!50!black,bg=red!20}
-\setbeamercolor*{block body alerted}{fg=black,bg=red!10}
-
-\definecolor{cadmiumgreen}{rgb}{0.0, 0.42, 0.24}
-
-\tabulinesep=0.7mm
-
-\newcommand{\attribution}[1] {
-\vspace{-5mm}\begin{flushright}\begin{scriptsize}\textcolor{gray}{\textcopyright\, #1}\end{scriptsize}\end{flushright}
-}
 
 \title{Курс ``Программирование''}
 \author[Юрий Литвинов]{Ю.В. Литвинов \newline 
@@ -36,6 +15,8 @@
 \date{}
 
 \begin{document}
+
+    \maketitle
 
     \begin{frame}
         \frametitle{Цель, общая структура}
@@ -65,11 +46,15 @@
                 \item Нет автоматической проверки --- ценим архитектуру и качество кода выше работоспособности, код всех решений просматривается вручную
                 \item Не отрицаем ценность автоматизации для базовых проверок, но пока руки не дошли
             \end{itemize}
-            \item Связанные курсы: 
-            \begin{itemize}
-                \item Информатика --- кругозор, общая теория, но все важные вещи мы разбираем ещё раз сами
-                \item Дискретная математика --- математические основы, основные алгоритмы; поддерживаем курс задачами, ещё раз обсуждаем теорию
-            \end{itemize}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Связанные курсы}
+        \begin{itemize}
+            \item Информатика --- кругозор, общая теория, но все важные вещи мы разбираем ещё раз сами
+            \item Дискретная математика --- математические основы, основные алгоритмы; поддерживаем курс задачами, ещё раз обсуждаем теорию
+            \item Учебные практики --- даём для них необходимые знания, они нам --- мотивацию учиться
         \end{itemize}
     \end{frame}
 
@@ -174,13 +159,17 @@
         \frametitle{Материалы}
         \begin{scriptsize}
             \begin{itemize}
-                \item Первый семестр: \url{https://github.com/yurii-litvinov/courses/tree/master/programming-1st-semester}
-                \item Второй семестр: \url{https://github.com/yurii-litvinov/courses/tree/master/programming-2nd-semester}
-                \item Третий семестр: \url{https://github.com/yurii-litvinov/courses/tree/master/programming-3rd-semester}
-                \item Четвёртый семестр: \url{https://github.com/yurii-litvinov/courses/tree/master/structures-and-algorithms}
+                \item Первый семестр: \\
+                    \url{https://github.com/yurii-litvinov/courses/tree/master/programming-1st-semester}
+                \item Второй семестр: \\
+                    \url{https://github.com/yurii-litvinov/courses/tree/master/programming-2nd-semester}
+                \item Третий семестр: \\
+                    \url{https://github.com/yurii-litvinov/courses/tree/master/programming-3rd-semester}
+                \item Четвёртый семестр: \\
+                    \url{https://github.com/yurii-litvinov/courses/tree/master/structures-and-algorithms}
             \end{itemize}
+            Материалы включают в себя TeX-овские исходники презентаций, конспекты (кроме первого семестра, там занятия в более интерактивном формате), условия домашних задач.
         \end{scriptsize}
-        Материалы включают в себя TeX-овские исходники презентаций, конспекты (кроме первого семестра, там занятия в более интерактивном формате), условия домашних задач.
     \end{frame}
 
 \end{document}
